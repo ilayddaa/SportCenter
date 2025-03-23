@@ -2,6 +2,14 @@
 
 Bu proje, bir spor merkezi web sitesi oluşturmak için geliştirilmiştir. Proje, HTML, CSS ve JavaScript kullanılarak oluşturulmuştur ve kullanıcı dostu bir arayüz sunmaktadır.
 
+## Proje Bağlantısı
+
+🔗 [Canlı Demo](https://lucent-pothos-46b21d.netlify.app)
+
+## Proje Görüntüsü
+
+![SportCenter Ekran Görüntüsü](./ekranresmi.png)
+
 ## Kullanılan Teknolojiler
 
 - **HTML**: Sayfa yapısını oluşturmak için kullanılmıştır.
