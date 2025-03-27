@@ -188,9 +188,9 @@
     </div>
     <!-- Classes Bitiş -->
 
-    <!-- BMI Calculator Başlangıç-->
-    <div class="classesalt">
-        <section id="bmi-calculator" class="flex flex-col items-center justify-center bg-white">
+    <!-- BMI Calculator Başlangıç -->
+    <div>
+        <section id="classes" class="flex flex-col items-center justify-center bg-white">
             <div class="classes-alt font-bold text-center w-full">
                 <h3 class="classesalt-title text-3xl text-blue-900 mb-4">BMI Calculator</h3>
                 <div class="classesalt-sentence mx-auto mb-6">
@@ -216,14 +216,19 @@
                         class="bg-blue-900 text-white py-2 px-6 rounded-md hover:bg-blue-800 transition-colors mb-4 w-full max-w-[200px]">
                         Calculate BMI
                     </button>
-                    <!-- Result -->
-                    <div id="result-container" class="bg-white rounded-lg shadow-lg" style="display: none;">
+                    <!-- Result container -->
+                    <div id="result-container" class="p-4 mt-4 bg-white rounded-lg shadow-lg" style="display: none;">
                         <p id="bmi-result" class="text-xl font-bold"></p>
                         <p id="bmi-category" class="text-lg"></p>
-                        <div class="flex items-center justify-center mt-2">
-                        </div>
                     </div>
-                    <img src="./pht/bmi-index.jpg" alt="BMI Index" class="classesalt-img shadow-lg rounded-lg">
+                </div>
+            </div>
+            <!-- BMI Indicator -->
+            <div class=" w-full max-w-md mx-auto relative">
+                <img src="./pht/bmi-index.jpg" alt="BMI Index"
+                    class="w-full h-auto rounded-lg shadow-lg classesalt-img">
+                <div id="bmi-indicator" class="hidden absolute w-3 h-3 bg-red-500 rounded-full"
+                    style="transform: translate(-50%, -50%); box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3); z-index: 10;">
                 </div>
             </div>
         </section>

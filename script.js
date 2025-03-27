@@ -58,63 +58,54 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Burada BMI hesaplama işlemleri yapılacak
+
 document.addEventListener('DOMContentLoaded', function () {
     // Burada BMI hesaplama işlemleri yapılacak
-    const heightInput = document.getElementById('height-input');
-    const weightInput = document.getElementById('weight-input');
     const calculateBtn = document.getElementById('calculate-bmi');
-    const bmiResult = document.getElementById('bmi-result');
-    const bmiCategory = document.getElementById('bmi-category');
-    const resultContainer = document.getElementById('result-container');
+    if (calculateBtn) {
+        calculateBtn.addEventListener('click', function () {
+            const height = parseFloat(document.getElementById('height-input').value);
+            const weight = parseFloat(document.getElementById('weight-input').value);
+            const resultContainer = document.getElementById('result-container');
+            const bmiResult = document.getElementById('bmi-result');
+            const bmiCategory = document.getElementById('bmi-category');
+            const indicator = document.getElementById('bmi-indicator');
 
-    // BMI hesaplama butonuna tıklanınca hesapla
-    calculateBtn.addEventListener('click', calculateBMI);
+            // Burada hatalı girişleri kontrol et
+            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) { // Eğer height veya weight değeri boş veya 0 ise hata mesajı göster, isNan fonksiyonu ise sayı olup olmadığını kontrol eder
+                bmiResult.textContent = "Please enter valid height and weight";
+                bmiCategory.textContent = "";
+                resultContainer.className = "p-4 mt-4 bg-red-100 text-red-700 rounded-lg";
+                indicator.classList.add('hidden');
+                return;
+            }
 
-    // BMI hesaplama fonksiyonu
-    function calculateBMI() {
-        // Get values from inputs
-        const height = parseFloat(heightInput.value);
-        const weight = parseFloat(weightInput.value);
+            // Calculate BMI
+            const bmi = weight / Math.pow(height / 100, 2); // Burada Math.pow fonksiyonu ile height'i 100'e böldük ve karesini aldık
+            const roundedBMI = bmi.toFixed(1); // Burada BMI değerini 1 ondalık basamağa yuvarladık
+            // Set category and color
+            let category, colorClass; // Burada category ve colorClass değişkenlerini tanımladık
+            if (bmi < 18.5) {
+                category = "Underweight";
+                colorClass = "bg-blue-100 text-blue-700";
+            } else if (bmi < 25) {
+                category = "Normal weight";
+                colorClass = "bg-green-100 text-green-700";
+            } else if (bmi < 30) {
+                category = "Overweight";
+                colorClass = "bg-yellow-100 text-yellow-700";
+            } else {
+                category = "Obesity";
+                colorClass = "bg-red-100 text-red-700";
+            }
 
-        // Burada hata kontrolü yapılacak
-        if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
-            bmiResult.textContent = "Please enter valid height and weight";
-            bmiCategory.textContent = "";
-            resultContainer.className = "p-4 mt-4 bg-red-100 text-red-700 rounded-lg";
-            return;
-        }
-
-        // Bmi hesaplama
-        const heightInMeters = height / 100;
-        const bmi = weight / (heightInMeters * heightInMeters);
-        const roundedBMI = bmi.toFixed(1);
-
-        // Burada sonucu ekrana yazdır
-        bmiResult.textContent = `Your BMI: ${roundedBMI}`;
-
-        // BMI kategorisini belirle
-        let category;
-        let colorClass;
-
-        if (bmi < 18.5) {
-            category = "Underweight";
-            colorClass = "bg-blue-100 text-blue-700";
-        } else if (bmi < 25) {
-            category = "Normal weight";
-            colorClass = "bg-green-100 text-green-700";
-        } else if (bmi < 30) {
-            category = "Overweight";
-            colorClass = "bg-yellow-100 text-yellow-700";
-        } else {
-            category = "Obesity";
-            colorClass = "bg-red-100 text-red-700";
-        }
-
-        bmiCategory.textContent = category; // BMI kategorisini yazdır
-        resultContainer.className = `p-4 mt-4 ${colorClass} rounded-lg`; // Renk sınıfını ekle
-
-        // Sonucu göster
-        resultContainer.style.display = "block";
+            // Burada BMI sonucunu ekrana yazdır
+            const xPos = Math.min(Math.max((bmi - 15) * 3.2, 5), 95); // Burada BMI değerine göre x pozisyonunu hesapladık
+            indicator.style.left = `${xPos}%`; // Burada x pozisyonunu ayarladık
+            indicator.style.top = "58%"; // Burada y pozisyonunu ayarladık
+            indicator.classList.remove('hidden'); // Burada indicator'ü gösterdik
+        });
     }
 });
 
